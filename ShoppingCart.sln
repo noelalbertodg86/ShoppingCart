@@ -6,7 +6,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Supercon", "src\Supercon\Su
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Supercon.Test", "src\Supercon.Test\Supercon.Test.csproj", "{D78E5CD8-7ECF-4158-97B9-3B0BD5360914}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomizeException", "CustomizeException\CustomizeException.csproj", "{C5041C15-61B3-4C31-BE33-37EBD78C7343}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomizeException", "CustomizeException\CustomizeException.csproj", "{C5041C15-61B3-4C31-BE33-37EBD78C7343}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TraceLogs", "TraceLogs\TraceLogs.csproj", "{02EEFBB8-AB1C-48EF-A11F-B25140600364}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +28,10 @@ Global
 		{C5041C15-61B3-4C31-BE33-37EBD78C7343}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C5041C15-61B3-4C31-BE33-37EBD78C7343}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C5041C15-61B3-4C31-BE33-37EBD78C7343}.Release|Any CPU.Build.0 = Release|Any CPU
+		{02EEFBB8-AB1C-48EF-A11F-B25140600364}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{02EEFBB8-AB1C-48EF-A11F-B25140600364}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{02EEFBB8-AB1C-48EF-A11F-B25140600364}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{02EEFBB8-AB1C-48EF-A11F-B25140600364}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

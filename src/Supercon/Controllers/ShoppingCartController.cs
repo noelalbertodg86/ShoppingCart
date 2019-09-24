@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Supercon.Service;
 using Supercon.Model;
 using CustomizeException;
+using TraceLogs;
 
 namespace Supercon.Controllers
 {
@@ -15,11 +16,20 @@ namespace Supercon.Controllers
     [Route("api/ShoppingCart")]
     public class ShoppingCartController : Controller
     {
+        private ProductService productService;
+        private CustomerService customerService;
+        private Customer customer;
+        private IList<Product> products;
+        private ITraceLogs traceLogs = new EventViewerTraceLogs("ShoppingCart");
+        private readonly ShoppingCartService shoppingCartService;
 
-        private readonly ShoppingCartService shoppingCartService = new ShoppingCartService();
-        private readonly ProductService productService = new ProductService();
-        private Customer customer = null;
-
+        public ShoppingCartController()
+        {
+            productService = new ProductService();
+            customerService = new CustomerService(customer);
+            products = new List<Product>();
+            shoppingCartService = new ShoppingCartService(customer, products);
+        }
 
         [HttpPost("shopingCart/checkout")]
         public ResponseService Checkout(Customer customer)
@@ -27,9 +37,9 @@ namespace Supercon.Controllers
             var response = new ShoppingCartResponseService();
             try
             {
-                IList<Product> products = new List<Product>();
+                customerService.CustomerDataValidation(customer);   
                 this.customer = customer;
-                shoppingCartService.Checkout(this.customer, products);
+                shoppingCartService.Checkout();
 
                 // Return ok value using the generic return class
                 response.SetOKResponse("Shopping cart started successfully");
@@ -42,10 +52,9 @@ namespace Supercon.Controllers
             }
             catch (Exception e)
             {
+                traceLogs.SaveErrorLogs(e);
                 response.SetErrorResponse();
                 return response;
-                // implementar clase de Logs y clases especificas de manejo de excepciones
-
             }
         }
 
@@ -57,6 +66,7 @@ namespace Supercon.Controllers
             {
                 productService.ProductDataValidation(product);
                 shoppingCartService.AddProduct(product);
+
                 // Return ok value using the generic return class
                 response.SetOKResponse("Product add successfully");
                 return response;
@@ -68,10 +78,9 @@ namespace Supercon.Controllers
             }
             catch (Exception e)
             {
+                traceLogs.SaveErrorLogs(e);
                 response.SetErrorResponse("Error adding product to the shopping cart");
                 return response;
-                // implementar clase de Logs y clases especificas de manejo de excepciones
-
             }
         }
 
@@ -83,6 +92,7 @@ namespace Supercon.Controllers
             {
                 productService.ProductDataValidation(product);
                 shoppingCartService.RemoveProduct(product);
+
                 // Return ok value using the generic return class
                 response.SetOKResponse("Product remove successfully");
                 return response;
@@ -94,10 +104,9 @@ namespace Supercon.Controllers
             }
             catch (Exception e)
             {
+                traceLogs.SaveErrorLogs(e);
                 response.SetErrorResponse("Error removing product from shopping cart");
                 return response;
-                // implementar clase de Logs y clases especificas de manejo de excepciones
-
             }
         }
 
@@ -113,10 +122,9 @@ namespace Supercon.Controllers
             }
             catch (Exception e)
             {
+                traceLogs.SaveErrorLogs(e);
                 response.SetErrorResponse("Error getting product from shopping cart");
                 return response;
-                // implementar clase de Logs y clases especificas de manejo de excepciones
-
             }
         }
 

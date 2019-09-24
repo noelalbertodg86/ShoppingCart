@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\CustomizeException\CustomizeException.csproj" />
+    <ProjectReference Include="..\..\TraceLogs\TraceLogs.csproj" />
   </ItemGroup>
 
 </Project>
