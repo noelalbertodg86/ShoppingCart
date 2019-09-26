@@ -60,5 +60,15 @@ namespace Supercon.Service
             if (string.IsNullOrEmpty(product.Name)) { throw new ProductsValidationExceptions("The product name cannot be empty"); }
         }
 
+        public void SetDiscount(Product product, Discount discount)
+        {
+            this.products.Where(p => p.ProductCode == product.ProductCode).First().discount = discount;
+        }
+
+        public void SetDiscount(string productCode, Discount discount)
+        {
+            this.products.Where(p => p.ProductCode == productCode).First().discount = discount;
+        }
+
     }
 }

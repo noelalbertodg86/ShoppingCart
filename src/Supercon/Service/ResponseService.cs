@@ -59,4 +59,26 @@ namespace Supercon.Service
 
     }
 
+    public class ProductComboResponseService : ResponseService
+    {
+        private List<Product> products;
+
+        public ProductComboResponseService() : base()
+        {
+            products = new List<Product>();
+        }
+
+        public override void SetErrorResponse(string _message = "SHOPPING CART MANGER ERROR")
+        {
+            messaje = _message;
+            code = "ERROR";
+        }
+
+        public void SetProducts(List<Product> products)
+        {
+            this.products = products;
+        }
+
+    }
+
 }

@@ -2,13 +2,21 @@ namespace Supercon.Model
 {
     public class Discount
     {
-        private double value;
-        private int percent;
+        public string code { get; set; }
+        public double value { get; set; }
+        public bool isPercentDiscount { get; set; }
 
         public Discount()
         {
             this.value = 0.0;
-            this.percent = 0;
+            this.isPercentDiscount = false;
+            this.code = string.Empty;
+        }
+        public Discount(double _value, bool _isPercentDiscount, string _code)
+        {
+            this.value = _value;
+            this.isPercentDiscount = _isPercentDiscount;
+            this.code = _code;
         }
 
     }

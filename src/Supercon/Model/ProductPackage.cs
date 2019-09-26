@@ -4,18 +4,18 @@ namespace Supercon.Model
 {
     public class ProductPackage
     {
-        string code;
-        List<Product> productsList;
+        public string code { get; }
+        public List<Product> productsList { get; set; }
+
+        public Discount discount { get; set; }
 
         public ProductPackage(string _code)
         {
             this.code = _code;
             productsList = new List<Product>();
+            this.discount = new Discount();
         }
 
-        public List<Product> ProductsList { get; set; }
-
-        public string Code { get; set; }
 
         
     }

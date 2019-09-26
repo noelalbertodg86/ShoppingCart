@@ -8,8 +8,9 @@ namespace Supercon.Model
     {
         //Product and quantity
         private IList<Product> products;
-        private Customer customer;
-        private string cartState;
+        private IList<ProductPackage> productPackages;
+        public Customer customer { get; }
+        public string cartState { get; }
 
         public ShoppingCart(Customer customer, IList<Product> products, string cartState)
         {
@@ -33,8 +34,19 @@ namespace Supercon.Model
             return products;
         }
 
-        public Customer Customer { get; set; }
-        public IList<Product> Products { get; set; }
+        public void AddProductPackage(ProductPackage product)
+        {
+            productPackages.Add(product);
+        }
 
+        public void RemoveProductPackage(ProductPackage product)
+        {
+            productPackages.Remove(product);
+        }
+
+        public IList<ProductPackage> GetProductPackage()
+        {
+            return productPackages;
+        }
     }
 }

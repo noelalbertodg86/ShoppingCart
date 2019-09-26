@@ -6,7 +6,7 @@ namespace Supercon.Service
 {
     public class CustomerService
     {
-        private Customer customer = null;
+        private Customer customer;
 
         public CustomerService(string name)
         {
@@ -23,9 +23,14 @@ namespace Supercon.Service
             this.customer = null;
         }
 
+        public void SetCustomerLoyaltyPoints(int loyaltyPoints)
+        {
+            customer.loyaltyPoints = loyaltyPoints;
+
+        }
         public void CustomerDataValidation(Customer _customer)
         {
-            if (string.IsNullOrEmpty(_customer.Name)){ throw new CustomerValidationExceptions("The customer name cannot be null or empty"); }
+            if (string.IsNullOrEmpty(_customer.name)){ throw new CustomerValidationExceptions("The customer name cannot be null or empty"); }
 
         }
     }
